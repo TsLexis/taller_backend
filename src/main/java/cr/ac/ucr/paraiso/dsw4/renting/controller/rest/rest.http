@@ -1,0 +1,17 @@
+@baseUrl = http://localhost:8084/renting
+### Search movies by title or genre
+POST {{baseUrl}}/peliculas
+Accept: application/json
+Content-Type: application/json
+
+{
+  "titulo": "Transformers",
+  "subtitulada": 1,
+  "estreno": 1,
+  "genero": {"generoId": 1},
+  "actores": [{"actorId": 1}, {"actorId": 2}]
+
+}
+
+
+

@@ -1,8 +1,20 @@
 package cr.ac.ucr.paraiso.dsw4.renting.domain;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table (name = "actores")
 public class Actor {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "actor_id")
     private int actorId;
+
+    @Column(name = "nombre_actor")
     private String nombreActor;
+
+    @Column(name = "apellido_actor")
     private String apellidoActor;
 
     public Actor(){

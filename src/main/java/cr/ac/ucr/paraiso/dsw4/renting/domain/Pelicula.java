@@ -3,12 +3,40 @@ package cr.ac.ucr.paraiso.dsw4.renting.domain;
 import java.util.LinkedList;
 import java.util.List;
 
+import jakarta.persistence.*;
+
+@Entity 
+@Table(name = "peliculas")
 public class Pelicula {
+
+    @Id 
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    @Column (name="pelicula_id")
     private int peliculaId;
+
+    @Column (name = "titulo")
     private String titulo;
+
+    @Column (name="subitulada")
     private boolean subtitulada;
+
+    @Column (name = "estreno")
     private boolean estreno;
+
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "genero_id", nullable = false)
     private Genero genero;
+
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {
+        CascadeType.PERSIST, 
+        CascadeType.MERGE})
+    @JoinTable(
+        name = "pelicula_actor",
+        joinColumns = @JoinColumn(name = "pelicula_id"),
+        inverseJoinColumns = @JoinColumn(name = "actor_id")
+    )
     private List<Actor> actores;
 
     public Pelicula(){
